@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Banking App{% endblock %}
+
+{% block content %}
+<h2 class="mb-1">Hello, {{ name }} 👋</h2>
+<p class="text-muted mb-4">Here is your account summary.</p>
+
+<!-- Balance card -->
+<div class="row mb-4">
+  <div class="col-md-5">
+    <div class="card border-0 bg-primary text-white shadow-sm">
+      <div class="card-body p-4 text-center">
+        <p class="mb-1 small text-uppercase fw-semibold opacity-75">Current Balance</p>
+        <h1 class="display-5 fw-bold mb-0">£{{ "%.2f"|format(balance) }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Action buttons -->
+<div class="mb-5">
+  <a href="{{ url_for('transactions.deposit') }}" class="btn btn-success me-2">
+    ＋ Deposit
+  </a>
+  <a href="{{ url_for('transactions.withdraw') }}" class="btn btn-warning">
+    − Withdraw
+  </a>
+</div>
+
+<!-- Transaction history -->
+<h5 class="mb-3">Recent Transactions</h5>
+{% if transactions %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Type</th>
+          <th class="text-end">Amount</th>
+          <th>Date &amp; Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tx in transactions %}
+        <tr>
+          <td class="text-muted">{{ tx['id'] }}</td>
+          <td>
+            {% if tx['type'] == 'deposit' %}
+              <span class="badge bg-success">Deposit</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">Withdrawal</span>
+            {% endif %}
+          </td>
+          <td class="text-end">£{{ "%.2f"|format(tx['amount']) }}</td>
+          <td class="text-muted small">{{ tx['timestamp'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-muted">No transactions yet.</p>
+{% endif %}
+
+{% endblock %}
