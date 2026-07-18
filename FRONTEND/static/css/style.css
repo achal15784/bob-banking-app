@@ -1,0 +1,32 @@
+/* ============================================================
+   style.css — Custom overrides on top of Bootstrap 5
+   ============================================================ */
+
+body {
+  background-color: #f4f6f9;
+}
+
+/* Navbar brand */
+.navbar-brand {
+  letter-spacing: 0.02em;
+}
+
+/* Balance card — slight lift on hover */
+.card {
+  border-radius: 0.6rem;
+}
+
+/* Table tweaks */
+.table th {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Login page card width */
+@media (min-width: 576px) {
+  .login-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
