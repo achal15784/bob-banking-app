@@ -1,7 +1,7 @@
 # bob-banking-app
 
 A feature-rich banking web application built using Flask, SQLite, HTML, CSS, JavaScript, and Bootstrap. The application simulates real-world online banking operations with a focus on security, performance, and usability.
-
+additional features can be added based on different multiple equirements
 ## Key Features
 - Secure user registration and login authentication
 - Account dashboard with real-time balance information
